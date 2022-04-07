@@ -1,18 +1,17 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import "./App.css";
 import { Button, Card } from "react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
-import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
-import { StargateClient , SigningStargateClient } from "@cosmjs/stargate";
+import { StargateClient } from "@cosmjs/stargate";
 
 function App() {
   
   // Usetstate for storing wallet details.
+  // TODO: use hooks
   const [data, setdata] = useState({
-    EthAddress: "",
+    EthAddress: "bubu",
     EthBalance: null,
     CosmosAddress: "",
     CosmosBalance: null,
@@ -27,29 +26,32 @@ function App() {
       // Open MetaMask window to read address.
       window.ethereum
         .request({ method: "eth_requestAccounts" })
-        .then((res) => accountChangeHandler(res[0])); // Just take first address for a demo.
+        .then((res) => accountChangeHandler(res[0])); // Just take first address for demo purposes.
     } else {
       alert("Metamask extension is not installed.");
     }
   };
 
-  // Button handler button for handling a request event for Keplr
+  // Button handler button for handling a request event for Keplr.
   const buttonHandlerKeplr = async() => {
   
     if (window.keplr) {
+
+      // TODO: add textbox inputs for that 
       // const chainId = "cosmoshub-4"; 
-      // const token = "ATOM";
+      // const token = "uatom";
       // const rpcEndpoint = "https://rpc.atomscan.com/";
+      // test address : cosmos1eg6zph2m4ya6rfztf84qsl233pzulnmtk22maz 
 
       const chainId = "osmosis-1"; 
-      const token = "OSMO";
+      const token = "uosmo";
       const rpcEndpoint = "https://rpc-osmosis.blockapsis.com/";
+      // test address: osmo13vtg6907g7gta86unrpc3v2s378rt4pgzkk6e5 
 
       // Unlock the wallet
       await window.keplr.enable(chainId); 
 
       // Use offlineSigner to get first wallet and public key.
-      // To sign transactions in future we need to use SigningStargateClient and DirectSecp256k1HdWallet or wait for Keplr update.
       const offlineSigner = await window.getOfflineSigner(chainId);
       const keplrAccounts = await offlineSigner.getAccounts();
 
@@ -59,13 +61,15 @@ function App() {
       // Get balance.
       const balance = await client.getBalance(keplrAccounts[0].address, token);
       console.log("balance:", balance);
+      // TODO: convert to readable form
 
+      console.log("balance readable:", balance);
     } else {
       alert("Keplr extension is not installed.");
     }
   };
 
-  // getEthBalance function for getting a balance in a right format
+  // Function getEthBalance for getting a balance in a right format.
   const getEthBalance = (address) => {
   
     window.ethereum
@@ -75,27 +79,31 @@ function App() {
       })
       .then((balance) => {
         setdata({
-          EthAddress: address, // TODO: why? I don't want that here
-          EthBalance: ethers.utils.formatEther(balance),
+          EthBalance: ethers.utils.formatEther(balance), // TODO: fix state issue.
         });
       });
   };
   
-  // Function for getting handling all events
+  // Function for getting EthBalance.
   const accountChangeHandler = (account) => {
-    // Setting an address data
+
     setdata({
       EthAddress: account,
     });
 
-    // Setting a balance
     getEthBalance(account);
   };
+
+  useEffect(() => {
+
+    console.log('data', data)
+  },[data]);
   
   return (
     <div className="App">
-      {/* Calling all values which we 
-       have stored in usestate */}
+      {/* TODO:
+          - 2 buttons one for connect and second for balance?
+      */}
   
       <Card className="text-center">
         <Card.Header>
