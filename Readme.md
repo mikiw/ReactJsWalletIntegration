@@ -1,3 +1,6 @@
+## Create React App
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## MetaMask Integration
 TODO
 
@@ -24,5 +27,7 @@ TODO: currently, there is no auth/accounts method - is it deprecated?
 
 ## Todo in future:
 - More tests
+- Add react life update
+- Test build
 - Add store via Redux 
 - There was a problem with crypto library in @cosmjs/crypto/build/pbkdf2.js 56:67-84, investigate why is that

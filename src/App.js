@@ -39,22 +39,24 @@ function App() {
       await window.keplr.enable(chainId); // Unlock the wallet
       const offlineSigner = await window.getOfflineSigner(chainId);
       const keplrAccounts = await offlineSigner.getAccounts(); // Get first wallet and public key
-      console.log('keplrAccounts:', keplrAccounts);
       // const cosmJS = new StargateClient(
       //   "https://lcd-cosmoshub.keplr.app/rest",
       //   accounts[0].address
       // );
 
       // TODO chage this to public address
-      const mnemonic = "pet ginger salad giant rail brand crew someone sunset inspire pill upper";
-      const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic);
-      console.log(wallet);
+      // const mnemonic = "pet ginger salad giant rail brand crew someone sunset inspire pill upper";
+      // const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic);
+      // console.log(wallet);
 
       const rpcEndpoint = "https://rpc.atomscan.com/";
-      const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, wallet);
+//       const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, wallet);
+      const client = await StargateClient.connect(rpcEndpoint);
+
       console.log("client:", client);
-      const balance = await client.getBalance(accounts[0].address, 'uatom');
-      console.log("balance:", balance);
+      // const balance = await client.getBalance(accounts[0].address, 'uatom');
+      // console.log("balance:", balance);
+
 
       // const account = await cosmJS.getAccount(accounts[0].address);
       // console.log('account:', account);
