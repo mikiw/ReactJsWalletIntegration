@@ -1,11 +1,13 @@
 ## Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a simple demo to show how to integrate with MetaMask and Keplr to read wallet balances.
+
 ## MetaMask Integration
 TODO
 
 ## Keplr Integration
-Unfortunately "Keplr extension manages only one address/public key pair" so we can't sign transactions using that but it's enough for our read balance proposes.
+Unfortunately "Keplr extension manages only one address/public key pair" so we can't sign transactions using that but it's enough for our read balance proposes of first wallet.
 
 Keplr documentation mentions also launchpad vs stargate versioning but it seems that that is not updated.
 
@@ -15,7 +17,7 @@ Let's hope that in future integration with that extension will be improved like 
 REST: https://node.atomscan.com
 RPC: https://rpc.atomscan.com/
 
-I used RPC because of its lightweight payloads and high performance.
+I used @cosmjs/stargate and RPC because of its lightweight payloads and high performance.
 
 ### Keplr wallet API
 https://docs.keplr.app/api/
@@ -26,8 +28,10 @@ There is an example https://github.com/chainapsis/keplr-example/blob/master/src/
 TODO: currently, there is no auth/accounts method - is it deprecated?
 
 ## Todo in future:
-- More tests
-- Add react life update
-- Test build
+- Use eventListeners to hook up wallet events and remove text inputs. I'm sure there is a way to display balance when you change chain in Keplr.
 - Add store via Redux 
-- There was a problem with crypto library in @cosmjs/crypto/build/pbkdf2.js 56:67-84, investigate why is that
+- Add react live update
+- Add ESLint
+- More tests
+- Test build
+- There was a problem with crypto library in @cosmjs/crypto/build/pbkdf2.js 56:67-84, it turns out that I needed to downrange react-scripts to 4.0.3, investigate why is that

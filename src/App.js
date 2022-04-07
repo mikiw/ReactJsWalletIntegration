@@ -18,11 +18,13 @@ function App() {
     CosmosBalance: null,
     CosmosCurrency: "",
   });
-  
+
   // Button handler button for handling a request event for MetaMask.
   const buttonHandlerMetaMask = () => {
 
     if (window.ethereum) {
+
+      // Open MetaMask window to read address.
       window.ethereum
         .request({ method: "eth_requestAccounts" })
         .then((res) => accountChangeHandler(res[0])); // Just take first address for a demo.
@@ -35,38 +37,29 @@ function App() {
   const buttonHandlerKeplr = async() => {
   
     if (window.keplr) {
-      const chainId = "cosmoshub-4"; // Cosmos sdk hub v4 "cosmoshub-4", osmosis "osmosis-1"
-      await window.keplr.enable(chainId); // Unlock the wallet
+      // const chainId = "cosmoshub-4"; 
+      // const token = "ATOM";
+      // const rpcEndpoint = "https://rpc.atomscan.com/";
+
+      const chainId = "osmosis-1"; 
+      const token = "OSMO";
+      const rpcEndpoint = "https://rpc-osmosis.blockapsis.com/";
+
+      // Unlock the wallet
+      await window.keplr.enable(chainId); 
+
+      // Use offlineSigner to get first wallet and public key.
+      // To sign transactions in future we need to use SigningStargateClient and DirectSecp256k1HdWallet or wait for Keplr update.
       const offlineSigner = await window.getOfflineSigner(chainId);
-      const keplrAccounts = await offlineSigner.getAccounts(); // Get first wallet and public key
-      // const cosmJS = new StargateClient(
-      //   "https://lcd-cosmoshub.keplr.app/rest",
-      //   accounts[0].address
-      // );
+      const keplrAccounts = await offlineSigner.getAccounts();
 
-      // TODO chage this to public address
-      // const mnemonic = "pet ginger salad giant rail brand crew someone sunset inspire pill upper";
-      // const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic);
-      // console.log(wallet);
-
-      const rpcEndpoint = "https://rpc.atomscan.com/";
-//       const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, wallet);
+      // Use StargateClient and RPC because of its lightweight payloads and high performance.
       const client = await StargateClient.connect(rpcEndpoint);
 
-      console.log("client:", client);
-      // const balance = await client.getBalance(accounts[0].address, 'uatom');
-      // console.log("balance:", balance);
+      // Get balance.
+      const balance = await client.getBalance(keplrAccounts[0].address, token);
+      console.log("balance:", balance);
 
-
-      // const account = await cosmJS.getAccount(accounts[0].address);
-      // console.log('account:', account);
-
-      // const balances = await cosmJS.getAllBalances(accounts[0].address);
-      // console.log('balances:', balances);
-      
-      // const accounts = await offlineSigner.get();
-      // console.log(accounts);
-      // TODO: finish!
     } else {
       alert("Keplr extension is not installed.");
     }

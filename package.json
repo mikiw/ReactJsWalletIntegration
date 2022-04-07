@@ -16,7 +16,7 @@
     "react": "^18.0.0",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^18.0.0",
-    "react-scripts": "5.0.0",
+    "react-scripts": "4.0.3",
     "stream": "^0.0.2",
     "web-vitals": "^2.1.4"
   },
@@ -43,8 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "browser": {
-    "crypto": false
   }
 }
