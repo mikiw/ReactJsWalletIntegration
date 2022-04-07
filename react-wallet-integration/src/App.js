@@ -5,7 +5,8 @@ import "./App.css";
 import { Button, Card } from "react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-import { SigningCosmosClient } from "@cosmjs/stargate";
+import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
+import { StargateClient , SigningStargateClient } from "@cosmjs/stargate";
 
 function App() {
   
@@ -35,36 +36,28 @@ function App() {
   
     if (window.keplr) {
       const chainId = "cosmoshub-4"; // Cosmos sdk hub v4 "cosmoshub-4", osmosis "osmosis-1"
-      await window.keplr.enable(chainId);
+      await window.keplr.enable(chainId); // Unlock the wallet
       const offlineSigner = await window.getOfflineSigner(chainId);
-      console.log(offlineSigner);
-      
-      const accounts = await offlineSigner.getAccounts();
-      console.log(accounts);
-      console.log(accounts[0].address);
+      const keplrAccounts = await offlineSigner.getAccounts(); // Get first wallet and public key
+      console.log('keplrAccounts:', keplrAccounts);
+      // const cosmJS = new StargateClient(
+      //   "https://lcd-cosmoshub.keplr.app/rest",
+      //   accounts[0].address
+      // );
 
-      const client = new SigningCosmosClient(
-        "https://lcd-cosmoshub.keplr.app",
-        accounts[0].address,
-        offlineSigner,
-      );
+      // TODO chage this to public address
+      const mnemonic = "pet ginger salad giant rail brand crew someone sunset inspire pill upper";
+      const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic);
+      console.log(wallet);
 
+      const rpcEndpoint = "https://rpc.atomscan.com/";
+      const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, wallet);
       console.log("client:", client);
-
-      const account = await client.getAccount(accounts[0].address);
-      console.log("account:", account);
+      const balance = await client.getBalance(accounts[0].address, 'uatom');
+      console.log("balance:", balance);
 
       // const account = await cosmJS.getAccount(accounts[0].address);
       // console.log('account:', account);
-
-      // const account = await client.getAccount(accounts[0].address);
-      // console.log("account:", account);
-
-      // // const account = await cosmJS.getAccount(accounts[0].address);
-      // // console.log('account:', account);
-
-      // const balance = cosmJs.getBalance(accounts[0].address, 'uatom');
-      // console.log("balance:", balance);
 
       // const balances = await cosmJS.getAllBalances(accounts[0].address);
       // console.log('balances:', balances);
