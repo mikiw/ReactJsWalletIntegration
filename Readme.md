@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is a simple demo to show how to integrate with MetaMask and Keplr to read wallet balances.
 
-TODO: add working screen here.
+![](main.jpg)
 
 ### Local Development
 
