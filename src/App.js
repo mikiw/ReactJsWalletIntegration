@@ -109,10 +109,9 @@ function App() {
   return (
     <div className="App">
       {/* TODO:
-          - combobox
-          - inputs for token, rpcEndpoint, exponent, tokenName
+          - TODO: refactor to many files
+          - combobox with inputs for token, rpcEndpoint, exponent, tokenName
           - UI / UX, styles, spaces
-          - tests
       */}
   
       <Card className="text-center">
@@ -125,7 +124,7 @@ function App() {
               Balance of {EthAddress}: {EthBalance} ETH
             </label>
           </Card.Text>
-          <Button onClick={buttonHandlerMetaMaskConnect} variant="primary">
+          <Button data-testid="meta-mask-button" onClick={buttonHandlerMetaMaskConnect} variant="primary">
             Connect to MetaMask
           </Button>
           <Button onClick={buttonHandlerMetaMaskBalance} variant="primary">
@@ -156,7 +155,7 @@ function App() {
               Available balance of {CosmosAddress}: {CosmosBalance} {CosmosCurrency}
             </label>
           </Card.Text>
-          <Button onClick={buttonHandlerKeplrConnect} variant="primary">
+          <Button data-testid="keplr-button" onClick={buttonHandlerKeplrConnect} variant="primary">
             Connect to Keplr
           </Button>
           <Button onClick={buttonHandlerKeplrBalance} variant="primary">

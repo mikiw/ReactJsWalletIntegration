@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This is a simple demo to show how to integrate with MetaMask and Keplr to read wallet balances.
 
+TODO: add working screen here.
+
 ### Local Development
 
 Install dependencies
@@ -17,11 +19,10 @@ Run React app
 npm start 
 ```
 
-For more details see comments on `src/App.js`.
-
+For more details see comments on `src/App.js`. Development was done on Windows 10 Pro 21H1 (19043.1586) and node v16.14.2.
 
 ## MetaMask Integration
-TODO
+MetaMast integration went smooth since it's a more stable extension. I used ethers library in version 5.6.2 to display balance in readable format.
 
 ## Keplr Integration
 Unfortunately "Keplr extension manages only one address/public key pair" but it's enough for our read balance purposes of the first wallet.
