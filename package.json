@@ -18,7 +18,8 @@
     "react-dom": "^18.0.0",
     "react-scripts": "4.0.3",
     "stream": "^0.0.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "web3": "^1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
