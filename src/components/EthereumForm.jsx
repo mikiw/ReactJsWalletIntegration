@@ -15,8 +15,8 @@ function EthereumForm() {
 
             // Open MetaMask window to read address.
             window.ethereum
-            .request({ method: "eth_requestAccounts" })
-            .then((res) => setEthAddress(res[0])); // Just take first address for demo purposes.
+                .request({ method: "eth_requestAccounts" })
+                .then((res) => setEthAddress(res[0])); // Just take first address for demo purposes.
         } else {
             alert("Metamask extension is not installed.");
         }
@@ -25,22 +25,17 @@ function EthereumForm() {
     // Button handler button for handling a balance request for MetaMask.
     const buttonHandlerMetaMaskBalance = () => {
 
-        // Get blanace in ETH.
-        if(EthAddress)
-            getEthBalance(EthAddress);
-    };
-
-    // Function getEthBalance for getting a balance in a right format.
-    const getEthBalance = (address) => {
-
-        window.ethereum
-            .request({ 
-                method: "eth_getBalance", 
-                params: [address, "latest"] 
-            })
-            .then((balance) => {
-                setEthBalance(ethers.utils.formatEther(balance));
-            });
+        // Get blanace in ETH in a right format from MetaMask.
+        if(EthAddress) {
+            window.ethereum
+                .request({ 
+                    method: "eth_getBalance", 
+                    params: [EthAddress, "latest"] 
+                })
+                .then((balance) => {
+                    setEthBalance(ethers.utils.formatEther(balance));
+                });
+        }
     };
 
     return (

@@ -4,12 +4,12 @@ import { StargateClient } from "@cosmjs/stargate";
 
 function CosmosForm() {
 
-    // Usetstate for storing wallets details.
+    // Usetstate for storing wallets details state.
     const [CosmosAddress, setCosmosAddress] = useState("");
     const [CosmosBalance, setCosmosBalance] = useState(null);
     const [CosmosToken, setCosmosToken] = useState(null);
 
-    // Usetstate for storing ComboBox details.
+    // Usetstate for storing ComboBox details state.
     const [ChainId, setChainId] = useState("cosmoshub-4")
     const [Token, setToken] = useState("uatom")
     const [RpcEndpoint, setRpcEndpoint] = useState("https://rpc.atomscan.com/")
@@ -27,7 +27,7 @@ function CosmosForm() {
 
         if (window.keplr) {
 
-            // Unlock the wallet
+            // Unlock the wallet.
             await window.keplr.enable(ChainId); 
 
             // Use offlineSigner to get first wallet and public key.
@@ -35,7 +35,7 @@ function CosmosForm() {
             const offlineSigner = await window.getOfflineSigner(ChainId);
             const keplrAccounts = await offlineSigner.getAccounts();
 
-            // Set state value as first address 
+            // Set state value as first address.
             setCosmosAddress(keplrAccounts[0].address);
         } else {
             alert("Keplr extension is not installed.");
@@ -85,7 +85,7 @@ function CosmosForm() {
                 <Form className="col col-6 mx-auto">
 
                     <Form.Group className="mb-3" >
-                        <Form.Label>Select default chains:</Form.Label>
+                        <Form.Label>Select chain:</Form.Label>
                         <Form.Select onChange={(e) => {handleSelect(e)}} >
                             <option value={"cosmoshub-4"}>Cosmos Hub v4</option>
                             <option value={"osmosis-1"}>Osmosis v1</option>
@@ -94,17 +94,17 @@ function CosmosForm() {
                     </Form.Group>
 
                     <Form.Group className="mb-3" >
-                        <Form.Label>RpcEndpoint:</Form.Label>
+                        <Form.Label>RPC endpoint:</Form.Label>
                         <Form.Control type="text" placeholder="" value={RpcEndpoint} onChange={(e) => setRpcEndpoint(e.target.value)}  />
                     </Form.Group>
 
                     <Form.Group className="mb-3" >
                         <Form.Label>Token:</Form.Label>
-                        <Form.Control type="text" placeholder="" value={Token} onChange={(e) => console.log('eee', e.target.value) }  />
+                        <Form.Control type="text" placeholder="" value={Token} onChange={(e) => setToken(e.target.value)}  />
                     </Form.Group>
 
                     <Form.Group className="mb-3" >
-                        <Form.Label>TokenName:</Form.Label>
+                        <Form.Label>Token name:</Form.Label>
                         <Form.Control type="text" placeholder="" value={TokenName} onChange={(e) => setTokenName(e.target.value)}  />
                     </Form.Group>
 
