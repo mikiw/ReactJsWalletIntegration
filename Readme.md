@@ -21,7 +21,7 @@ npm start
 
 For more details see comments on `src/App.js`. Development was done on Windows 10 Pro 21H1 (19043.1586) and node v16.14.2.
 
-### Test
+### Tests
 
 Command to run test.
 
