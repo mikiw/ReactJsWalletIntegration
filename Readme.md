@@ -7,19 +7,28 @@ TODO: add working screen here.
 
 ### Local Development
 
-Install dependencies
+Install dependencies.
 
 ```
 npm install
 
 ```
 
-Run React app
+Run React app.
 ```
 npm start 
 ```
 
 For more details see comments on `src/App.js`. Development was done on Windows 10 Pro 21H1 (19043.1586) and node v16.14.2.
+
+### Test
+
+Command to run test.
+
+```
+npm test
+
+```
 
 ## MetaMask Integration
 MetaMast integration went smooth since it's a more stable extension. I used ethers library in version 5.6.2 to display balance in readable format.
@@ -47,9 +56,10 @@ There is an example https://github.com/chainapsis/keplr-example/blob/master/src/
 
 ## Todo in future
 - Use eventListeners to hook up wallet events and remove text inputs (if possible). I'm sure there is a way to display balance when you change chain in Keplr. Also is there an API gateway to all Cosmos SDK blockchains to improve UI/UX?
+- Check 25 vulnerabilities in 1929 packages
 - Add store via Redux 
-- Add react live update
-- Add ESLint
+- Add ESLint, check react live update
 - Add more tests
+- Add exception handling if provided data are wrong
 - Test the build of that project
 - There was a problem with the crypto library in @cosmjs/crypto/build/pbkdf2.js 56:67-84, it turns out that I needed to downrange react-scripts to 4.0.3, investigate why is that
