@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { ethers } from "ethers";
 
-function EthereumForm() {
+function EthereumBalanceCard() {
 
     // Usetstate for storing wallets details.
-    const [EthAddress, setEthAddress] = useState("");  
-    const [EthBalance, setEthBalance] = useState(null);
+    const [ethAddress, setEthAddress] = useState("");  
+    const [ethBalance, setEthBalance] = useState(null);
     
     // Button handler button for handling a request window event for MetaMask.
     const buttonHandlerMetaMaskConnect = () => {
@@ -26,11 +26,12 @@ function EthereumForm() {
     const buttonHandlerMetaMaskBalance = () => {
 
         // Get blanace in ETH in a right format from MetaMask.
-        if(EthAddress) {
+        if(ethAddress) {
+
             window.ethereum
                 .request({ 
                     method: "eth_getBalance", 
-                    params: [EthAddress, "latest"] 
+                    params: [ethAddress, "latest"] 
                 })
                 .then((balance) => {
                     setEthBalance(ethers.utils.formatEther(balance));
@@ -46,7 +47,7 @@ function EthereumForm() {
             <Card.Body>
                 <Card.Text>
                     <label>
-                        Balance of {EthAddress}: {EthBalance} {EthBalance ? ("ETH") : ("")}
+                        Balance of {ethAddress}: {ethBalance} {ethBalance ? ("ETH") : ("")}
                     </label>
                 </Card.Text>
                 <Button data-testid="meta-mask-button" onClick={buttonHandlerMetaMaskConnect} variant="primary" className="me-2">
@@ -60,4 +61,4 @@ function EthereumForm() {
     )
 }
 
-export default EthereumForm
+export default EthereumBalanceCard
