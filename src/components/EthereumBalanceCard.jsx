@@ -53,7 +53,7 @@ function EthereumBalanceCard() {
                 <Button data-testid="meta-mask-button" onClick={buttonHandlerMetaMaskConnect} variant="primary" className="me-2">
                     Connect to MetaMask
                 </Button>
-                <Button onClick={buttonHandlerMetaMaskBalance} variant="primary">
+                <Button onClick={buttonHandlerMetaMaskBalance} variant="primary" disabled={!ethAddress}>
                     Get balance
                 </Button>
             </Card.Body>

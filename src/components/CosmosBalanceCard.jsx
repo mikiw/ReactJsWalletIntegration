@@ -68,7 +68,7 @@ export const CosmosBalanceCard = forwardRef((props, ref) => {
                 Connect to Keplr
             </Button>
 
-            <Button onClick={buttonHandlerKeplrBalance} variant="primary">
+            <Button onClick={buttonHandlerKeplrBalance} variant="primary" disabled={!cosmosAddress}>
                 Get balance
             </Button>
         </>
