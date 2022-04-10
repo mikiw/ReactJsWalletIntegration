@@ -69,5 +69,4 @@ There is an example https://github.com/chainapsis/keplr-example/blob/master/src/
 - Add ESLint, check react live update
 - Add more tests
 - Add exception handling if provided data are wrong
-- Test the build of that project
 - There was a problem with the crypto library in @cosmjs/crypto/build/pbkdf2.js 56:67-84, it turns out that I needed to downrange react-scripts to 4.0.3, investigate why is that
