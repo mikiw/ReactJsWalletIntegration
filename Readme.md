@@ -11,23 +11,32 @@ Install dependencies.
 
 ```
 npm install
-
 ```
 
 Run React app.
 ```
-npm start 
+npm start
 ```
 
 For more details see comments on `src/App.js`. Development was done on Windows 10 Pro 21H1 (19043.1586) and node v16.14.2.
 
-### Tests
+### Run tests
 
 Command to run test.
 
 ```
 npm test
 
+```
+
+### Run build
+
+Command to run test.
+
+```
+npm run build
+cd .\build\
+npx serve
 ```
 
 ## MetaMask Integration
