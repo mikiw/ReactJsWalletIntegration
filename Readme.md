@@ -26,7 +26,6 @@ Command to run test.
 
 ```
 npm test
-
 ```
 
 ### Run build
