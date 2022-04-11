@@ -63,6 +63,7 @@ There is an example https://github.com/chainapsis/keplr-example/blob/master/src/
 ![](osmosis.jpg)
 
 ## Todo in future
+- Add a custom blockchain to Keplr via experimentalSuggestChain
 - Use eventListeners to hook up wallet events and remove text inputs (if possible). I'm sure there is a way to display balance when you change chain in Keplr. Also is there an API gateway to all Cosmos SDK blockchains to improve UI/UX?
 - Check 25 vulnerabilities in 1929 packages
 - Add store via Redux 
